@@ -1,3 +1,4 @@
+package com.ejemplo;
 import java.util.ArrayList;
 
 public class StackArrayList<E> implements Stack<E> {

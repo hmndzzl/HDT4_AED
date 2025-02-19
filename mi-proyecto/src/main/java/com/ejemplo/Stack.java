@@ -1,3 +1,4 @@
+package com.ejemplo;
 public interface Stack<E> {
 
    /**

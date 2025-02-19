@@ -1,3 +1,4 @@
+package com.ejemplo;
 public class StackList<E> implements Stack<E> {
     private Nodo<E> ultimo;
     private int size;
