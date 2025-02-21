@@ -1,4 +1,12 @@
 package com.ejemplo;
+
+/**
+ * Implementación de un Stack utilizando una lista enlazada.
+ * Esta clase proporciona una implementación eficiente de un Stack
+ * utilizando una estructura de nodos enlazados.
+ *
+ * @param <E> El tipo de elementos que contendrá el Stack
+ */
 public class StackList<E> implements Stack<E> {
     private Nodo<E> ultimo;
     private int size;
@@ -17,7 +25,7 @@ public class StackList<E> implements Stack<E> {
     }
 
     /**
-     * Constructor 
+     * Constructor que inicializa un Stack vacío.
      */
     public StackList() {
         ultimo = null;
@@ -25,8 +33,8 @@ public class StackList<E> implements Stack<E> {
     }
 
     /**
-     * Agrega un elemento al stack
-     * @param item lo que se agregara
+     * Agrega un elemento al tope del Stack.
+     * @param item El elemento a agregar
      */
     public void push(E item) {
         ultimo = new Nodo<>(item, ultimo);
@@ -34,9 +42,9 @@ public class StackList<E> implements Stack<E> {
     }
 
     /**
-     * borra y devuelve el ultimo elemento añadido
-     * @return lo eliminado
-     * @throws IndexOutOfBoundsException si no hay nada 
+     * Elimina y devuelve el elemento en el tope del Stack.
+     * @return El elemento eliminado
+     * @throws IndexOutOfBoundsException si el Stack está vacío
      */
     public E pop() {
         if (empty()) throw new IndexOutOfBoundsException("stack vacio");
@@ -47,9 +55,9 @@ public class StackList<E> implements Stack<E> {
     }
 
     /**
-     * Devuelve el ultimo dato ingresado
-    //  * @return lo ultimo del stack
-     * @throws IndexOutOfBoundsException si esta vacio
+     * Devuelve el elemento en el tope del Stack sin eliminarlo.
+     * @return El elemento en el tope del Stack
+     * @throws IndexOutOfBoundsException si el Stack está vacío
      */
     public E peek() {
         if (empty()) throw new IndexOutOfBoundsException("stack vacio");
@@ -57,16 +65,16 @@ public class StackList<E> implements Stack<E> {
     }
 
     /**
-     * Devuelve el numero de elementos
-     * @return numero de datos
+     * Devuelve el número de elementos en el Stack.
+     * @return La cantidad de elementos en el Stack
      */
     public int size() {
         return size;
     }
 
     /**
-     * revisa si esta vacio
-     * @return true o false si esta o no vacio el stack
+     * Verifica si el Stack está vacío.
+     * @return true si el Stack está vacío, false en caso contrario
      */
     public boolean empty() {
         return ultimo == null;

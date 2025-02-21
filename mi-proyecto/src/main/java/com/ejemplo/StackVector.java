@@ -2,58 +2,61 @@ package com.ejemplo;
 import java.util.Vector;
 
 /**
- * Implementación de una pila (Stack) utilizando Vector
- * @param <E> Elementos almacenados en el stack
+ * Implementación de un Stack utilizando Vector.
+ * Esta clase proporciona una implementación thread-safe de un Stack
+ * utilizando la estructura de datos Vector.
+ *
+ * @param <E> El tipo de elementos que contendrá el Stack
  */
-public class StackVector<E> implements Stack<E>{
-	protected Vector<E> data;
+public class StackVector<E> implements Stack<E> {
+    protected Vector<E> data;
 
-	/**
-     * Constructor que inicializa una pila vacía.
+    /**
+     * Constructor que inicializa un Stack vacío.
      */
-	public StackVector() {
-		data = new Vector<E>();
-	}
+    public StackVector() {
+        data = new Vector<E>();
+    }
 
-	/**
-     * Agrega un elemento a la pila
-     * @param item Elemento a agregar.
+    /**
+     * Agrega un elemento al tope del Stack.
+     * @param item El elemento a agregar
      */
-	public void push(E item) {
-		data.add(item);
-	}
+    public void push(E item) {
+        data.add(item);
+    }
 
-	/**
-     * Elimina y devuelve el último elemento ingresado.
-     * @return Elemento eliminado.
-     * @throws IndexOutOfBoundsException si la pila está vacía.
+    /**
+     * Elimina y devuelve el elemento en el tope del Stack.
+     * @return El elemento eliminado
+     * @throws IndexOutOfBoundsException si el Stack está vacío
      */
-	public E pop() {
-		return data.remove(size()-1);
-	}
+    public E pop() {
+        return data.remove(size() - 1);
+    }
 
-	/**
-     * Devuelve el elemento de la pila sin eliminarlo
-     * @return Elemento en la cima de la pila.
-     * @throws IndexOutOfBoundsException si la pila está vacía.
+    /**
+     * Devuelve el elemento en el tope del Stack sin eliminarlo.
+     * @return El elemento en el tope del Stack
+     * @throws IndexOutOfBoundsException si el Stack está vacío
      */
-	public E peek() {
-		return data.get(size() - 1);
-	}
-	
-	/**
-     * Devuelve el número de elementos
-     * @return Cantidad de elementos en el stack
+    public E peek() {
+        return data.get(size() - 1);
+    }
+
+    /**
+     * Devuelve el número de elementos en el Stack.
+     * @return La cantidad de elementos en el Stack
      */
-	public int size() {
-		return data.size();
-	}
-  
-	/**
-     * Verifica si la pila está vacía.
-     * @return true si la pila está vacía, @return false en caso contrario
+    public int size() {
+        return data.size();
+    }
+
+    /**
+     * Verifica si el Stack está vacío.
+     * @return true si el Stack está vacío, false en caso contrario
      */
-	public boolean empty() {
-		return size() == 0;
-	}
+    public boolean empty() {
+        return size() == 0;
+    }
 }
