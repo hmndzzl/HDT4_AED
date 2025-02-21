@@ -9,14 +9,26 @@ import java.util.Stack;
  */
 public class CalculadoraPostfix implements Interfaz {
     private Stack<Integer> stack;
+    private static CalculadoraPostfix instance;
 
     /**
-     * Constructor 
+     * Constructor privado para evitar instanciación externa.
      */
-    public CalculadoraPostfix() {
+    private CalculadoraPostfix() {
         stack = new Stack<>(); // Usamos Stack<Integer> de Java
     }
 
+    /**
+     * Método estático para obtenr una única instancia de la calculadora.
+     * @return La única instancia de la calculadora.
+     */
+
+    public static CalculadoraPostfix getInstance() {
+        if (instance == null) {
+            instance = new CalculadoraPostfix();
+    }
+        return instance;
+    }
     @Override
     /**
      * Evalúa una expresión en notación postfix y devuelve el resultado
