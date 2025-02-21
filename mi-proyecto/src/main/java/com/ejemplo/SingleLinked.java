@@ -1,18 +1,12 @@
 package com.ejemplo;
 
-/**
- * Implementación de una lista simplemente encadenada que también funciona como Stack.
- * Esta clase proporciona una implementación eficiente de una lista enlazada simple
- * con operaciones de Stack.
- */
-public class SingleLinked implements Stack<Integer> {
+//Esta clase se encargará de implementar y leer la lista simplemente encadenada.
+public class SingleLinked {
     private Nodo primero;
     private int size;
 
     /**
      * Clase interna para los nodos de la lista
-     * @param dato El valor almacenado en el nodo
-     * @param siguiente Referencia al siguiente nodo en la lista
      */
     private static class Nodo {
         int dato;
@@ -25,7 +19,7 @@ public class SingleLinked implements Stack<Integer> {
     }
 
     /**
-     * Constructor que inicializa una lista vacía.
+     * Constructor
      */
     public SingleLinked() {
         primero = null;
@@ -33,23 +27,38 @@ public class SingleLinked implements Stack<Integer> {
     }
 
     /**
-     * Agrega un elemento al tope del Stack.
-     * @param item El elemento a agregar
+     * Agrega un elemento al inicio de la lista
+     * @param item el elemento a agregar
      */
-    @Override
-    public void push(Integer item) {
+    public void agregarInicio(int item) {
         primero = new Nodo(item, primero);
         size++;
     }
 
     /**
-     * Elimina y devuelve el elemento en el tope del Stack.
-     * @return El elemento eliminado
-     * @throws IndexOutOfBoundsException si el Stack está vacío
+     * Agrega un elemento al final de la lista
+     * @param item lo que se agregara
      */
-    @Override
-    public Integer pop() {
-        if (empty()) throw new IndexOutOfBoundsException("stack vacio");
+    public void agregarFinal(int item) {
+        if (primero == null) {
+            primero = new Nodo(item, null);
+        } else {
+            Nodo actual = primero;
+            while (actual.siguiente != null) {
+                actual = actual.siguiente;
+            }
+            actual.siguiente = new Nodo(item, null);
+        }
+        size++;
+    }
+
+    /**
+     * Borra y devuelve el primer elemento de la lista
+     * @return el elemento eliminado
+     * @throws IndexOutOfBoundsException si no hay nada
+     */
+    public int pop() {
+        if (empty()) throw new IndexOutOfBoundsException("lista vacía");
         int item = primero.dato;
         primero = primero.siguiente;
         size--;
@@ -57,30 +66,27 @@ public class SingleLinked implements Stack<Integer> {
     }
 
     /**
-     * Devuelve el elemento en el tope del Stack sin eliminarlo.
-     * @return El elemento en el tope del Stack
-     * @throws IndexOutOfBoundsException si el Stack está vacío
+     * Devuelve el ultimo dato ingresado
+     * @return lo ultimo de la lista
+     * @throws IndexOutOfBoundsException si la lista esta vacía
      */
-    @Override
-    public Integer peek() {
-        if (empty()) throw new IndexOutOfBoundsException("stack vacio");
+    public int peek() {
+        if (empty()) throw new IndexOutOfBoundsException("lista vacía");
         return primero.dato;
     }
 
     /**
-     * Devuelve el número de elementos en el Stack.
-     * @return La cantidad de elementos en el Stack
+     * Devuelve el número de elementos
+     * @return el tamaño
      */
-    @Override
     public int size() {
         return size;
     }
 
     /**
-     * Verifica si el Stack está vacío.
-     * @return true si el Stack está vacío, false en caso contrario
+     * Devuelve si esta vacio
+     * @return si esta vacio
      */
-    @Override
     public boolean empty() {
         return size == 0;
     }
