@@ -7,35 +7,35 @@ import java.io.InputStreamReader;
 import java.util.Stack;
 
 /**
- * Main class for evaluating mathematical expressions.
- * This program reads an infix expression from a file, converts it to postfix notation,
- * and evaluates the result using stack operations.
+ * Clase principal para evaluar expresiones matemáticas.
+ * Este programa lee una expresión infija de un archivo, la convierte a notación postfija,
+ * y evalúa el resultado usando operaciones de pila.
  */
 public class Main {
 
     /**
-     * Main method that orchestrates the expression evaluation process.
-     * Reads expression from file, converts to postfix, evaluates, and prints result.
+     * Método principal que orquesta el proceso de evaluación de expresiones.
+     * Lee la expresión del archivo, la convierte a postfija, evalúa e imprime el resultado.
      * 
-     * @param args Command line arguments (not used)
+     * @param args Argumentos de línea de comandos (no se usan)
      */
     public static void main(String[] args) {
         try {
             String expression = readExpressionFromFile("com/ejemplo/datos.txt");
             String postfix = infixToPostfix(expression);
             int result = evaluatePostfix(postfix);
-            System.out.println("The result of the expression is: " + result);
+            System.out.println("El resultado de la expresión es: " + result);
         } catch (IOException e) {
-            System.err.println("Error reading the file: " + e.getMessage());
+            System.err.println("Error leyendo el archivo: " + e.getMessage());
         }
     }
 
     /**
-     * Reads a mathematical expression from a file.
+     * Lee una expresión matemática de un archivo.
      * 
-     * @param filename The name of the file containing the expression
-     * @return The expression as a String
-     * @throws IOException If the file cannot be read or is not found
+     * @param filename El nombre del archivo que contiene la expresión
+     * @return La expresión como un String
+     * @throws IOException Si el archivo no puede leerse o no se encuentra
      */
     private static String readExpressionFromFile(String filename) throws IOException {
         InputStream inputStream = Main.class.getClassLoader().getResourceAsStream(filename);
@@ -49,10 +49,10 @@ public class Main {
     }
 
     /**
-     * Converts an infix expression to postfix notation using the Shunting Yard algorithm.
+     * Convierte una expresión infija a notación postfija usando el algoritmo Shunting Yard.
      * 
-     * @param expression The infix expression to convert
-     * @return The expression in postfix notation
+     * @param expression La expresión infija a convertir
+     * @return La expresión en notación postfija
      */
     private static String infixToPostfix(String expression) {
         StringBuilder result = new StringBuilder();
@@ -81,10 +81,10 @@ public class Main {
     }
 
     /**
-     * Determines the precedence of mathematical operators.
+     * Determina la precedencia de los operadores matemáticos.
      * 
-     * @param ch The operator character
-     * @return The precedence level (higher number means higher precedence)
+     * @param ch El carácter del operador
+     * @return El nivel de precedencia (número mayor significa mayor precedencia)
      */
     private static int precedence(char ch) {
         switch (ch) {
@@ -101,11 +101,11 @@ public class Main {
     }
 
     /**
-     * Evaluates a postfix expression using a stack.
+     * Evalúa una expresión postfija usando una pila.
      * 
-     * @param expression The postfix expression to evaluate
-     * @return The result of the evaluation
-     * @throws RuntimeException If the expression is invalid or incomplete
+     * @param expression La expresión postfija a evaluar
+     * @return El resultado de la evaluación
+     * @throws RuntimeException Si la expresión es inválida o incompleta
      */
     private static int evaluatePostfix(String expression) {
         Stack<Integer> stack = new Stack<>();
@@ -114,7 +114,7 @@ public class Main {
                 stack.push(c - '0');
             } else {
                 if (stack.size() < 2) {
-                    throw new RuntimeException("Invalid postfix expression: not enough operands for operator " + c);
+                    throw new RuntimeException("Expresión postfix inválida: no hay suficientes operandos para el operador " + c);
                 }
                 int val1 = stack.pop();
                 int val2 = stack.pop();
@@ -135,7 +135,7 @@ public class Main {
             }
         }
         if (stack.isEmpty()) {
-            throw new RuntimeException("Invalid postfix expression: empty stack at end of evaluation");
+            throw new RuntimeException("Expresión postfix inválida: pila vacía al final de la evaluación");
         }
         return stack.pop();
     }
